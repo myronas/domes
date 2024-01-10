@@ -20,5 +20,5 @@
 
 ```bash
 git clone https://github.com/myronas/domes
-mvn compile
+mvn clean install
 mvn test
