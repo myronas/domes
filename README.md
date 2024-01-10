@@ -13,7 +13,10 @@
 - Java JDK
 - Maven
 - 
-##terminal
+  ## Μεταγλώττιση και Εκτέλεση
+
+Για να μεταγλωττίσετε και να εκτελέσετε τον κώδικα, ακολουθήστε τα παρακάτω βήματα:
+#terminal
 
 ```bash
 git clone https://github.com/myronas/domes
