@@ -1,4 +1,4 @@
-package org.example.com.it21938.dequeue;
+package org.example.com.ergasia.dequeue;
 import java.util.Iterator;
 
 public interface DeQueue<E> {

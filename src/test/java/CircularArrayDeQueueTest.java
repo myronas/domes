@@ -1,7 +1,6 @@
 
 
-import org.example.com.it21938.dequeue.CircularArrayDeQueue;
-import org.example.com.it21938.dequeue.DeQueue;
+import org.example.com.ergasia.dequeue.CircularArrayDeQueue;
 import org.junit.jupiter.api.Test;
 
 import java.util.ConcurrentModificationException;

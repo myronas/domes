@@ -1,4 +1,4 @@
-package org.example.com.it21938.dequeue;
+package org.example.com.ergasia.dequeue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -6,15 +6,19 @@ import java.util.ConcurrentModificationException;
 
 public class CircularArrayDeQueue<E> implements DeQueue<E> {
     private E[] array;
-    private int f = 0; // Front index of the queue
-    private int r = 0; // Rear index (next available slot) of the queue
+    private int f = 0;
+    private int r = 0;
     private int size = 0;
     private volatile int modCount = 0;
 
     // Constructor
     @SuppressWarnings("unchecked")
     public CircularArrayDeQueue(int capacity) {
-        array = (E[]) new Object[capacity];
+        int actualCapacity = 1;
+        while (actualCapacity < capacity) {
+            actualCapacity *= 2;
+        }
+        array = (E[]) new Object[actualCapacity];
     }
 
     // Checks if the queue is empty
@@ -30,7 +34,7 @@ public class CircularArrayDeQueue<E> implements DeQueue<E> {
     // Inserts an element at the front of the queue
     public void pushFirst(E elem) {
         if (elem == null) throw new NullPointerException("Cannot push null element");
-        if (size == array.length) resize(array.length * 2); // double the size for new capacity
+        if (size == array.length) resize(array.length * 2);
         f = (f - 1 + array.length) % array.length;
         array[f] = elem;
         size++;
@@ -40,7 +44,7 @@ public class CircularArrayDeQueue<E> implements DeQueue<E> {
     // Inserts an element at the end of the queue
     public void pushLast(E elem) {
         if (elem == null) throw new NullPointerException("Cannot push null element");
-        if (size == array.length) resize(array.length + 1);
+        if (size == array.length) resize(array.length *2);
         array[r] = elem;
         r = (r + 1) % array.length;
         size++;
@@ -142,12 +146,9 @@ public class CircularArrayDeQueue<E> implements DeQueue<E> {
 
 
     private void resize(int newCapacity) {
-        assert newCapacity >= size;
-
-
         int capacity = 1;
         while (capacity < newCapacity) {
-             capacity= capacity *2;
+            capacity *= 2;
         }
         @SuppressWarnings("unchecked")
         E[] newArray = (E[]) new Object[capacity];
@@ -172,6 +173,9 @@ public class CircularArrayDeQueue<E> implements DeQueue<E> {
         }
         sb.append("]");
         return sb.toString();
+    }
+    public int capacity(){
+        return array.length;
     }
 
 }
