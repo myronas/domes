@@ -158,6 +158,22 @@ public class CircularArrayDeQueue<E> implements DeQueue<E> {
         f = 0;
         r = size;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        int i = f;
+        for (int j = 0; j < size; j++) {
+            sb.append(array[i].toString());
+            if (j < size - 1) {
+                sb.append(", ");
+            }
+            i = (i + 1) % array.length;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
 }
 
 
